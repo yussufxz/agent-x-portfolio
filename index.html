@@ -1,9 +1,164 @@
-{
-  "follow_ups": [
-    "Can you add animations or transitions to the weather application dashboard?",
-    "How can I change the location of the weather forecast displayed on the dashboard?",
-    "What technologies are used in this weather app dashboard design?",
-    "Can you explain how the 7-day forecast data is being fetched and displayed?",
-    "Is it possible to add a feature for hourly weather updates to the dashboard?"
-  ]
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Obsidian Grill</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: #222;
+            display: flex;
+            justify-content: space-around;
+            padding: 1em 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+        nav a {
+            color: gold;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #fff;
+        }
+        section {
+            display: none;
+            padding: 3em;
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        section.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+        #home {
+            background: url('https://example.com/hero.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #f5f5f5;
+        }
+        #menu, #reservations, #contact {
+            background-color: #1a1a1a;
+            min-height: 100vh;
+        }
+        h1, h2 {
+            color: gold;
+        }
+        .menu-category {
+            margin: 2em 0;
+        }
+        .menu-category h3 {
+            margin-bottom: 0.5em;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5em 0;
+        }
+        .reservation-form {
+            max-width: 400px;
+            margin: auto;
+            background: #222;
+            padding: 2em;
+            border-radius: 8px;
+        }
+        .reservation-form input, .reservation-form select {
+            width: 100%;
+            padding: 0.5em;
+            margin: 0.5em 0;
+            border: none;
+            border-radius: 4px;
+            background: #333;
+            color: #c9c9c9;
+        }
+        .reservation-form input::placeholder {
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" data-view="home">Home</a>
+        <a href="#" data-view="menu">Menu</a>
+        <a href="#" data-view="reservations">Reservations</a>
+        <a href="#" data-view="contact">Contact</a>
+    </nav>
+
+    <section id="home" class="active">
+        <div>
+            <h1>Welcome to The Obsidian Grill</h1>
+            <p>Experience the pinnacle of luxury dining at our exclusive steakhouse where every dish is crafted to perfection.</p>
+        </div>
+    </section>
+
+    <section id="menu">
+        <h2>Our Menu</h2>
+        <div class="menu-category">
+            <h3>Starters</h3>
+            <div class="menu-item"><span>Garlic Bread</span><span>$5</span></div>
+            <div class="menu-item"><span>House Salad</span><span>$8</span></div>
+        </div>
+        <div class="menu-category">
+            <h3>Mains (Steaks)</h3>
+            <div class="menu-item"><span>Filet Mignon</span><span>$40</span></div>
+            <div class="menu-item"><span>Ribeye Steak</span><span>$50</span></div>
+        </div>
+        <div class="menu-category">
+            <h3>Desserts</h3>
+            <div class="menu-item"><span>Chocolate Lava Cake</span><span>$10</span></div>
+            <div class="menu-item"><span>Tiramisu</span><span>$12</span></div>
+        </div>
+    </section>
+
+    <section id="reservations">
+        <h2>Reservations</h2>
+        <form class="reservation-form">
+            <input type="date" placeholder="Date">
+            <input type="time" placeholder="Time">
+            <select>
+                <option value="" disabled selected>Party Size</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5+</option>
+            </select>
+        </form>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>For more information, please contact us at (555) 123-4567 or email reservations@obsidiangrill.com.</p>
+    </section>
+
+    <script>
+        const navLinks = document.querySelectorAll('nav a');
+        const sections = document.querySelectorAll('section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', event => {
+                event.preventDefault();
+                const view = link.getAttribute('data-view');
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === view) {
+                        section.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
